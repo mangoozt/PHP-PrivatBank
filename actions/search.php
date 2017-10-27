@@ -37,9 +37,9 @@
 		}
 		else
 		{
-			$pbXml .= '<Message>Данні про заборгованість можна отримати в Касі!</Message>';
+			$pbXml .= '<Message>Р”Р°РЅРЅС– РїСЂРѕ Р·Р°Р±РѕСЂРіРѕРІР°РЅС–СЃС‚СЊ РјРѕР¶РЅР° РѕС‚СЂРёРјР°С‚Рё РІ РљР°СЃС–!</Message>';
 //			$pbXml .= '<DopData>';
-//			$pbXml .= '<Dop name="name" value="значение"/>';
+//			$pbXml .= '<Dop name="name" value="Р·РЅР°С‡РµРЅРёРµ"/>';
 //			$pbXml .= '</DopData>';
 
 			$payerDebts = $pbAdapter->selectDebts($currentPayer['id'], $serviceCode);
@@ -68,10 +68,10 @@
 			$pbXml .=  pbXml::companyInfo($currentCompany);
 			$pbXml .=  pbXml::debtInfo($debt);
 //			$pbXml .= '<MeterData>';
-//			$pbXml .= '<Meter previosValue="213" tarif="0.01" delta="2341234" name="Телекомунікаційні послуги"/>';
+//			$pbXml .= '<Meter previosValue="213" tarif="0.01" delta="2341234" name="РўРµР»РµРєРѕРјСѓРЅС–РєР°С†С–Р№РЅС– РїРѕСЃР»СѓРіРё"/>';
 //			$pbXml .= '</MeterData>';
 			$pbXml .= '<ServiceName>' . $debt['service_name'] . '</ServiceName>';
-			$pbXml .= '<Destination>Оплата за послугу "' . $debt['service_name'] . '" від ' . $currentPayer['name'] . '</Destination>';
+			$pbXml .= '<Destination>РћРїР»Р°С‚Р° Р·Р° РїРѕСЃР»СѓРіСѓ "' . $debt['service_name'] . '" РІС–Рґ ' . $currentPayer['name'] . '</Destination>';
 			$pbXml .=  pbXml::payerInfo($currentPayer, $currentPayer['num'], $currentPayer['num']);
 			$pbXml .= '</DebtService>';
 		}
