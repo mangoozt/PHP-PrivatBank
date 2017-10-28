@@ -5,15 +5,15 @@
 */
 	ob_start();
 
-	require_once '/classes/pbDemo.class.php';
-	require_once '/classes/pbLib.class.php';
-	require_once '/classes/pbXml.class.php';
+	require_once 'classes/pbDemo.class.php';
+	require_once 'classes/pbLib.class.php';
+	require_once 'classes/pbXml.class.php';
 
 	define('SAFE_MODE', false);
 
 	$allowedIps = array('193.93.216.127', '178.212.111.21');
 
-	$schema = 'http://www.w3.org/2001/XMLSchema-instance';
+	define('SCHEMA','http://www.w3.org/2001/XMLSchema-instance');
 	$apiUrl = 'http://debt.privatbank.ua/Transfer';
 
 	$stdin 		= file_get_contents('php://input');
@@ -47,8 +47,6 @@
 			}
 		}
 
-		$pbActionsPath = 'actions';
-
 		if (!$isFailed)
 		{
 			$pbXml = '';
@@ -56,19 +54,19 @@
 			switch ($action)
 			{
 				case 'Presearch':
-					include $pbActionsPath . '/presearch.php';
+					include 'actions/presearch.php';
 					break;
 				case 'Search':
-					include $pbActionsPath . '/search.php';
+					include 'actions/search.php';
 					break;
 				case 'Check':
-					include $pbActionsPath . '/check.php';
+					include 'actions/check.php';
 					break;
 				case 'Pay':
-					include $pbActionsPath . '/pay.php';
+					include 'actions/pay.php';
 					break;
 				case 'Cancel':
-					include $pbActionsPath . '/cancel.php';
+					include 'actions/cancel.php';
 					break;
 			}
 
@@ -85,5 +83,3 @@
 	echo $xmlheader .
 		 $xmlbody .
 		 $xmlfooter;
-
-?>

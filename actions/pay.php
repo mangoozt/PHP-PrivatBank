@@ -4,7 +4,7 @@
 	$payId = pbLib::getPayId($data);
 	if ($ref && $payId && $pbAdapter->confirmPayment($ref, $payId))
 	{
-		$pbXml = pbXml::data('', $schema, 'Gateway', $ref);
+		$pbXml = pbXml::data('', SCHEMA, 'Gateway', $ref);
 	}
 
 	if (!$pbXml)

@@ -4,7 +4,7 @@
 	$res = $pbAdapter->cancelPayment($ref);
 	if ($res)
 	{
-		$pbXml = pbXml::data('', $schema, 'Gateway', $ref);
+		$pbXml = pbXml::data('', SCHEMA, 'Gateway', $ref);
 	}
 	else
 	{

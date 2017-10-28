@@ -18,7 +18,7 @@ class pbXml
 	);
 
 /**
- * xml2array() will convert the given XML text to an array in the XML structure.
+ * @desc  xml2array() will convert the given XML text to an array in the XML structure.
  * Link: http://www.bin-co.com/php/scripts/xml2array/
  * Arguments : $contents - The XML text
  *             $get_attributes - 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
@@ -26,9 +26,13 @@ class pbXml
  * Return: The parsed XML in an array form. Use print_r() to see the resulting array structure.
  * Examples: $array =  xml2array(file_get_contents('feed.xml'));
  *           $array =  xml2array(file_get_contents('feed.xml', 1, 'attribute'));
+ * @param $content string
+ * @param $getAttributes int
+ * @param $priority string
+ * @return array
 */
 
-	public static function xml2array($content, $getAttributes = 1, $priority = 'attribute'/*'tag'*/)
+	public static function xml2array($content, $getAttributes = 1, $priority = 'attribute')
 	{
 		if (!function_exists('xml_parser_create')) return array();
 
@@ -40,13 +44,13 @@ class pbXml
 		xml_parse_into_struct($parser, trim($content), $xmlValues);
 		xml_parser_free($parser);
 
-		if(!$xmlValues) return;
+		if(!$xmlValues) return array();
 
 	    //Initializations
 		$array = array();
-		$parents = array();
-		$openedTags = array();
-		$arr = array();
+		$type = '';
+		$tag = '';
+		$level = 0;
 		$repeatedTagIndex = array(); //Multiple tags with same name will be turned into an array
 
 		$current = &$array;
@@ -238,7 +242,7 @@ class pbXml
 			$msg = self::$errors[$code];
 		}
 
-		$xml  = '<Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ErrorInfo" code="' . $code . '">';
+		$xml  = '<Data xmlns:xsi="'.SCHEMA.'" xsi:type="ErrorInfo" code="' . $code . '">';
 		$xml .= '<Message>' . $msg . '</Message>';
 		$xml .= '</Data>';	
 
@@ -248,7 +252,6 @@ class pbXml
 	public static function payerInfo($payer, $billInd, $pn = '')
 	{
 		$value  = self::tag('Fio', $payer['name']);
-//		$value .= self::tag('Phone', $payer['phone']);
 		if (!$pn)
 			$value .= self::tag('Address', $payer['address']);
 
@@ -307,5 +310,3 @@ class pbXml
 		return self::tag('Data', $inXml, $params);
 	}
 }
-
-?>

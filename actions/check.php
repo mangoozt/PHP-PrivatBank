@@ -12,7 +12,7 @@
 //			$pbXml .= '<Unit save="true" value="value1" type="S" name="name1"/>';
 //			$pbXml .= '<Unit save="true" value="value2" type="S" name="name2"/>';
 //			$pbXml .= '<Unit save="true" value="value3" type="S" name="name3"/>';
-			$pbXml  = pbXml::data($pbXml, $schema, 'Gateway', $ref);
+			$pbXml  = pbXml::data($pbXml, SCHEMA, 'Gateway', $ref);
 		}
 		else
 		{

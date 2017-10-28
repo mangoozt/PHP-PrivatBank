@@ -78,7 +78,7 @@
 		
 		$pbXml .= '</ServiceGroup>';
 
-		$pbXml = pbXml::data($pbXml, $schema, 'DebtPack');
+		$pbXml = pbXml::data($pbXml, SCHEMA, 'DebtPack');
 	}
 
 ?>

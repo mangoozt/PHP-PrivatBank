@@ -84,7 +84,7 @@
 		$pbXml .= '</Column>';
 		$pbXml .= '</Columns>';
 
-		$pbXml = pbXml::data($pbXml, $schema, 'PayersTable');
+		$pbXml = pbXml::data($pbXml, SCHEMA, 'PayersTable');
 	}
 	else if (!$pbXml)
 	{
