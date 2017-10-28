@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
 * @desc клас, який реалізує набір допоміжних
 * функцій для роботи з PrivatBank Debt API
 */
@@ -46,5 +46,3 @@ class pbLib
 		return false;
 	}
 }
-
-?>
