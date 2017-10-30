@@ -70,15 +70,6 @@ interface pb
 	public function getCompanyByService($serviceCode);
 
 	/**
-	* @desc пошук адреси платника за id
-	* @param int $payerId id платника
-	* @return array $address адреса платника
-	* результуючий масив повнен мати таку структуру:
-	*	array('name' => '...')
-	*/
-	public function getPayerAddress($payerId);
-
-	/**
 	* @desc інформація про стан розрахунків платника
 	* @param int $payerId id платника 
 	* @param int $serviceCode id послуги
@@ -91,13 +82,6 @@ interface pb
 	* )
 	*/
 	public function selectDebts($payerId, $serviceCode = '');
-
-	/**
-	* @desc генерування унікального ідентифікатора платежу (використовується у запитах XML)
-	* @return int $refrence 
-	*
-	*/
-	function generateCheckRef();
 
 	/**
 	* @desc вставка платежу в БД
@@ -126,4 +110,3 @@ interface pb
 	function cancelPayment($ref);
 }
 
-?>

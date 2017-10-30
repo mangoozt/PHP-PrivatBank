@@ -136,6 +136,13 @@ class pbDemo implements pb
 		return $company;
 	}
 
+	/**
+	 * @desc пошук адреси платника за id
+	 * @param int $payerId id платника
+	 * @return array $address адреса платника
+	 * результуючий масив повнен мати таку структуру:
+	 *	array('name' => '...')
+	 */
 	public function getPayerAddress($payerId)
 	{
 		return $this->addresses[$payerId]; 
@@ -170,6 +177,11 @@ class pbDemo implements pb
 		return $result;
 	}
 
+	/**
+	 * @desc генерування унікального ідентифікатора платежу (використовується у запитах XML)
+	 * @return int $refrence
+	 *
+	 */
 	public function generateCheckRef()
 	{
 		$min = 10000000;
@@ -180,9 +192,17 @@ class pbDemo implements pb
 
 	public function insertPayment($payerNum, $sum) { return $this->generateCheckRef(); }
 
-	public function confirmPayment($ref) { return true; }
+	public function confirmPayment($ref,$payId='') { return true; }
 
 	public function cancelPayment($ref) { return true; }
-}
 
-?>
+	public function selectPayersByResource($resource)
+	{
+		// TODO: Implement selectPayersByResource() method.
+	}
+
+	public function getPayerByResource($resource)
+	{
+		// TODO: Implement getPayerByResource() method.
+	}
+}
