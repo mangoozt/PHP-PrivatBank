@@ -29,7 +29,7 @@ interface pb
 
 	/**
 	* @desc Пошук платників за адресою
-	* @param array $adderss адреса: array('street' => '...', 'house' =>  '...[/...]', 'flat' => '...')
+	* @param array $queryAddr адреса: array('street' => '...', 'house' =>  '...[/...]', 'flat' => '...')
 	* @return array $result перелік платників
 	* результуючий масив повнен мати таку структуру:
 	*	array(0 =>
@@ -72,7 +72,7 @@ interface pb
 	/**
 	* @desc інформація про стан розрахунків платника
 	* @param int $payerId id платника 
-	* @param int $serviceCode id послуги
+	* @param int|string $serviceCode id послуги
 	* @return array $result розрахунки платника
 	* результуючий масив повнен мати таку структуру:
 	* array(0 =>
@@ -95,7 +95,7 @@ interface pb
 	/**
 	* @desc підтвердження платежу
 	* @param int $ref
-	* @param int $payId
+	* @param int|string $payId
 	* @return bool $res 
 	*
 	*/
