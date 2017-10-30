@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var pb $pbAdapter
+ */
 	$totalSum = $data['Transfer']['Data']['TotalSum']['value'];
 
 	if (is_numeric($totalSum))
@@ -23,5 +25,3 @@
 	{
 		$pbXml = pbXml::error(3);
 	}
-
-?>

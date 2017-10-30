@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var pb $pbAdapter
+ */
 	$units = $data['Transfer']['Data']['Unit'];
 	$funit = reset($units);
 
@@ -90,5 +92,3 @@
 	{
 		$pbXml = pbXml::error(2, 'Перевірте параметри пошуку');
 	}
-
-?>

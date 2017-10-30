@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var pb $pbAdapter
+ */
 	$y = date('Y');
 	$m = date('m');
 
@@ -80,5 +82,3 @@
 
 		$pbXml = pbXml::data($pbXml, SCHEMA, 'DebtPack');
 	}
-
-?>
