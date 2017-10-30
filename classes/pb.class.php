@@ -41,7 +41,7 @@ interface pb
 
 	/**
 	* @desc пошук платника за ресурсом
-	* @param string $num особовий рахунок платника
+	* @param string $resource особовий рахунок платника (логін)
 	* @return array $result дані платника
 	* результуючий масив повнен мати таку структуру:
 	*	array('name' => '...', 'num' => '...', 'phone' => '...', address => '...')
@@ -50,7 +50,7 @@ interface pb
 
 	/**
 	* @desc пошук платників зі схожим ресурсом
-	* @param string $num особовий номер
+	* @param string $resource особовий номер (логін)
 	* @return array $result перелік платників
 	* результуючий масив повнен мати таку структуру:
 	*	array(0 =>
