@@ -68,6 +68,8 @@
 				case 'Cancel':
 					include 'actions/cancel.php';
 					break;
+				default:
+					$xmlbody .= pbXml::error(99, 'Невірна дія для обробки');
 			}
 
 			$xmlbody .= $pbXml;	
