@@ -11,7 +11,7 @@
 
 	define('SAFE_MODE', false);
 
-	$allowedIps = array('193.93.216.127', '178.212.111.21');
+	$allowedIps = array('217.117.64.232', '217.117.68.232');
 
 	define('SCHEMA','http://www.w3.org/2001/XMLSchema-instance');
 	$apiUrl = 'http://debt.privatbank.ua/Transfer';
