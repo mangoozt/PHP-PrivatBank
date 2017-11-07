@@ -244,19 +244,23 @@ class pbXml
 
 	public static function debtInfo($debt)
 	{
-		$value = self::tag('Year', $debt['year']);
-		$value .= self::tag('Month', $debt['month']);
-		$value .= self::tag('Charge', $debt['charge']);
-		$value .= self::tag('Balance', 0.00);
-		$value .= self::tag('Recalc', 0.00);
-		$value .= self::tag('Subsidies', 0.00);
-		$value .= self::tag('Remission', 0.00);
-		$value .= self::tag('LastPaying', $debt['last_paying']);
+		$value = '';
+		if (isset($debt['year'])) $value = self::tag('Year', $debt['year']);
+		if (isset($debt['month'])) $value .= self::tag('Month', $debt['month']);
+		if (isset($debt['charge'])) $value .= self::tag('Charge', $debt['charge']);
+		if (isset($debt['balance'])) $value .= self::tag('Balance', $debt['balance']);
+		if (isset($debt['recalc'])) $value .= self::tag('Recalc', 0.00);
+		if (isset($debt['subsidies'])) $value .= self::tag('Subsidies', 0.00);
+		if (isset($debt['remission'])) $value .= self::tag('Remission', 0.00);
+		if (isset($debt['last_paying'])) $value .= self::tag('LastPaying', $debt['last_paying']);
 
 		$params = array();
-		$params['amountToPay'] = $debt['sum'];
-		$params['debt'] = $debt['balance'];
+		$params['amountToPay'] = $debt['amount'];
+		$params['debt'] = $debt['debt'];
 
+		if (!$value and !$params) {
+			return '';
+		}
 		return self::tag('DebtInfo', $value, $params);
 	}
 
