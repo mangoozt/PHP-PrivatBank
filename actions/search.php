@@ -30,9 +30,9 @@ if (isset($data['Transfer']['Data']['attr']['presearchId'])) {
 		$isError = true;
 	} else {
 		$pbXml .= '<Message>Данні про заборгованість можна отримати в Касі!</Message>';
-//			$pbXml .= '<DopData>';
-//			$pbXml .= '<Dop name="name" value="значение"/>';
-//			$pbXml .= '</DopData>';
+		/**
+		 * TODO DopData
+		 */
 
 		$payerDebts = $pbAdapter->selectDebts($currentPayer['id'], $serviceCode);
 	}
@@ -51,14 +51,13 @@ if (!$isError) {
 		}
 
 		$pbXml .= '<DebtService' . $tariff . ' serviceCode="' . $debt['service_id'] . '">';
-		$pbXml .= '<DopData>';
-		$pbXml .= '<Dop name="login" value="' . $currentPayer['user_login'] . '"/>';
-		$pbXml .= '</DopData>';
+		if (isset($currentPayer['user_login'])) {
+			$pbXml .= '<DopData>';
+			$pbXml .= '<Dop name="login" value="' . $currentPayer['user_login'] . '"/>';
+			$pbXml .= '</DopData>';
+		}
 		$pbXml .= pbXml::companyInfo($currentCompany);
 		$pbXml .= pbXml::debtInfo($debt);
-//			$pbXml .= '<MeterData>';
-//			$pbXml .= '<Meter previosValue="213" tarif="0.01" delta="2341234" name="Телекомунікаційні послуги"/>';
-//			$pbXml .= '</MeterData>';
 		$pbXml .= '<ServiceName>' . $debt['service_name'] . '</ServiceName>';
 		$pbXml .= '<Destination>Оплата за послугу "' . $debt['service_name'] . '" від ' . $currentPayer['name'] . '</Destination>';
 		$pbXml .= pbXml::payerInfo($currentPayer, $currentPayer['num'], $currentPayer['num']);
