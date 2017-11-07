@@ -1,18 +1,18 @@
 <?php
 
-/** 
-* @desc демонстраційний клас, який імплементує та реалізує
-* інтерфейс для роботи з PrivatBank Debt API
-*/
+/**
+ * @desc демонстраційний клас, який імплементує та реалізує
+ * інтерфейс для роботи з PrivatBank Debt API
+ */
 
 require_once 'pb.class.php';
 
 class pbDemo implements pb
 {
 	private $companies = array(
-		1 => array('id' => 1, 'name' => 'ТОВ "StarBacks"', 'mfo' => '1242143','okpo' => '23412341234', 'account' => '260012323', 'code' => 131),
-		2 => array('id' => 2, 'name' => 'МіськГаз', 'mfo' => '434324','okpo' => '87456456543', 'account' => '245545455', 'code' => 291),
-		3 => array('id' => 2, 'name' => 'МіськВода', 'mfo' => '344565','okpo' => '46435435543', 'account' => '4657385865', 'code' => 232)
+		1 => array('id' => 1, 'name' => 'ТОВ "StarBacks"', 'mfo' => '1242143', 'okpo' => '23412341234', 'account' => '260012323', 'code' => 131),
+		2 => array('id' => 2, 'name' => 'МіськГаз', 'mfo' => '434324', 'okpo' => '87456456543', 'account' => '245545455', 'code' => 291),
+		3 => array('id' => 2, 'name' => 'МіськВода', 'mfo' => '344565', 'okpo' => '46435435543', 'account' => '4657385865', 'code' => 232)
 	);
 
 	private $payers = array(
@@ -36,8 +36,8 @@ class pbDemo implements pb
 	private $services = array(
 		1 => array('id' => 1, 'name' => 'LAN10M', 'price' => 100.00),
 		2 => array('id' => 2, 'name' => 'LAN30M', 'price' => 150.00),
-		3 => array('id' => 3, 'name' => 'Газ', 	  'price' => 150.00),
-		4 => array('id' => 4, 'name' => 'Вода',   'price' => 150.00)
+		3 => array('id' => 3, 'name' => 'Газ', 'price' => 150.00),
+		4 => array('id' => 4, 'name' => 'Вода', 'price' => 150.00)
 	);
 
 	private $payerServices = array(
@@ -57,7 +57,7 @@ class pbDemo implements pb
 		3 => array('id' => 3, 'service_id' => 1, 'payer_id' => 3, 'sum' => 100.00, 'balance' => 100.00, 'company_id' => 1),
 		4 => array('id' => 4, 'service_id' => 2, 'payer_id' => 3, 'sum' => 250.00, 'balance' => 20.00, 'company_id' => 1),
 		5 => array('id' => 5, 'service_id' => 2, 'payer_id' => 4, 'sum' => 300.00, 'balance' => 50.00, 'company_id' => 1),
-		6 => array('id' => 6, 'service_id' => 1, 'payer_id' => 5, 'sum' => 0.00  , 'balance' => 30.00, 'company_id' => 1),
+		6 => array('id' => 6, 'service_id' => 1, 'payer_id' => 5, 'sum' => 0.00, 'balance' => 30.00, 'company_id' => 1),
 		7 => array('id' => 7, 'service_id' => 3, 'payer_id' => 6, 'sum' => 450.00, 'balance' => 30.00, 'company_id' => 2),
 		8 => array('id' => 8, 'service_id' => 4, 'payer_id' => 6, 'sum' => 500.00, 'balance' => 21.00, 'company_id' => 3)
 	);
@@ -66,10 +66,8 @@ class pbDemo implements pb
 	{
 		$result = array();
 
-		foreach ($this->payers as $payer)
-		{
-			if ($payer['num'] == $num)
-			{
+		foreach ($this->payers as $payer) {
+			if ($payer['num'] == $num) {
 				$address = $this->getPayerAddress($payer['id']);
 				$payer['address'] = $address['name'];
 
@@ -85,10 +83,8 @@ class pbDemo implements pb
 	{
 		$result = array();
 
-		foreach ($this->payers as $payer)
-		{
-			if (strpos($payer['num'], $num) !== false)
-			{
+		foreach ($this->payers as $payer) {
+			if (strpos($payer['num'], $num) !== false) {
 				$address = $this->getPayerAddress($payer['id']);
 				$payer['address'] = $address['name'];
 
@@ -103,15 +99,14 @@ class pbDemo implements pb
 	{
 		$result = array();
 
-		foreach ($this->payers as $payer)
-		{
+		foreach ($this->payers as $payer) {
 			$address = $this->getPayerAddress($payer['id']);
 
 			if (strpos($address['name'], 'вул. ' . $queryAddr['street']) !== false &&
-				strpos($address['name'], 'буд. ' . $queryAddr['house'])  !== false && (
-				!$queryAddr['flat'] || $queryAddr['flat'] &&
-				strpos($address['name'], 'кв. ' . $queryAddr['flat']) !== false))
-			{
+				strpos($address['name'], 'буд. ' . $queryAddr['house']) !== false && (
+					!$queryAddr['flat'] || $queryAddr['flat'] &&
+					strpos($address['name'], 'кв. ' . $queryAddr['flat']) !== false)
+			) {
 				$payer['address'] = $address['name'];
 
 				$result[] = $payer;
@@ -125,10 +120,8 @@ class pbDemo implements pb
 	{
 		$company = array();
 
-		foreach ($this->debts as $debt)
-		{
-			if ($debt['service_id'] == $serviceCode)
-			{
+		foreach ($this->debts as $debt) {
+			if ($debt['service_id'] == $serviceCode) {
 				$company = $this->companies[$debt['company_id']];
 			}
 		}
@@ -141,33 +134,30 @@ class pbDemo implements pb
 	 * @param int $payerId id платника
 	 * @return array $address адреса платника
 	 * результуючий масив повнен мати таку структуру:
-	 *	array('name' => '...')
+	 *    array('name' => '...')
 	 */
 	public function getPayerAddress($payerId)
 	{
-		return $this->addresses[$payerId]; 
+		return $this->addresses[$payerId];
 	}
 
 	public function selectDebts($payerId, $serviceCode = '')
 	{
 		$result = array();
 
-		foreach ($this->debts as $debt)
-		{
+		foreach ($this->debts as $debt) {
 			$service = $this->services[$debt['service_id']];
-			if ($serviceCode && $serviceCode != $debt['service_id'])
-			{
+			if ($serviceCode && $serviceCode != $debt['service_id']) {
 				continue;
 			}
 
-			if ($debt['payer_id'] == $payerId)
-			{
-				$debt['charge']        = 0.0;
-				$debt['last_paying']   = 0.0;
-				$debt['service_name']  = $service['name'];
+			if ($debt['payer_id'] == $payerId) {
+				$debt['charge'] = 0.0;
+				$debt['last_paying'] = 0.0;
+				$debt['service_name'] = $service['name'];
 				$debt['service_price'] = $service['price'];
 
-				$debt['year']  = date('Y');
+				$debt['year'] = date('Y');
 				$debt['month'] = date('m');
 
 				$result[] = $debt;
@@ -190,11 +180,20 @@ class pbDemo implements pb
 		return mt_rand($min, $max);
 	}
 
-	public function insertPayment($payerNum, $sum) { return $this->generateCheckRef(); }
+	public function insertPayment($payerNum, $sum)
+	{
+		return $this->generateCheckRef();
+	}
 
-	public function confirmPayment($ref,$payId='') { return true; }
+	public function confirmPayment($ref, $payId = '')
+	{
+		return true;
+	}
 
-	public function cancelPayment($ref) { return true; }
+	public function cancelPayment($ref)
+	{
+		return true;
+	}
 
 	public function selectPayersByResource($resource)
 	{
